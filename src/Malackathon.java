@@ -20,7 +20,7 @@ public class Malackathon {
         this.serverManager = new ServerManager(8080, endpointManager);
     }
 
-    public void init() throws SQLException {
+    public void init() {
         Diagnostico diagnostico = databaseManager.getDiagnosticoById(1);
         System.out.println("1: " + diagnostico.toString());
 
@@ -31,7 +31,7 @@ public class Malackathon {
     }
 
     private void registerGetEndpoints() {
-        endpointManager.registerGet("/hello", new HelloEndpoint());
+        endpointManager.registerGet("/hello", new HelloEndpoint(databaseManager));
     }
 
     private void registerPostEndpoints() {
