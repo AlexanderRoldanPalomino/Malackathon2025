@@ -30,7 +30,7 @@ public class DatabaseManager {
         try {
             Connection con = pds.getConnection();
             Statement stmt = con.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM datos WHERE id = " + id + ";");
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM ANONIMISED_MALACKATHON WHERE id = " + id + ";");
             resultSet.next();
 
             ComunidadAutonoma comunidadAutonoma = ComunidadAutonoma.byName(resultSet.getString("comunidad_autonoma"));
@@ -216,7 +216,7 @@ public class DatabaseManager {
         try {
             Connection con = pds.getConnection();
             Statement stmt = con.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM datos FETCH FIRST " + n + " ROWS ONLY;");
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM ANONIMISED_MALACKATHON FETCH FIRST " + n + " ROWS ONLY;");
 
             List<Diagnostico> diagnosticoList = new ArrayList<>();
             while (resultSet.next()) {
@@ -406,7 +406,7 @@ public class DatabaseManager {
         try {
             Connection con = pds.getConnection();
             Statement stmt = con.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM datos WHERE nombre LIKE '" + text.toUpperCase() + "%';");
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM ANONIMISED_MALACKATHON WHERE nombre LIKE '" + text.toUpperCase() + "%';");
 
             List<Diagnostico> diagnosticoList = new ArrayList<>();
             while (resultSet.next()) {
