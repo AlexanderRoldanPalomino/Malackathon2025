@@ -2,7 +2,8 @@ import database.DatabaseManager;
 import database.Diagnostico;
 import web.EndpointManager;
 import web.ServerManager;
-import web.endpoints.get.HelloEndpoint;
+import web.endpoints.get.IndexEndpoint;
+import web.endpoints.post.FiltarEndpoint;
 import web.endpoints.post.SubmitEndpoint;
 
 import java.io.IOException;
@@ -31,11 +32,12 @@ public class Malackathon {
     }
 
     private void registerGetEndpoints() {
-        endpointManager.registerGet("/hello", new HelloEndpoint(databaseManager));
+        endpointManager.registerGet("/", new IndexEndpoint(databaseManager));
     }
 
     private void registerPostEndpoints() {
         endpointManager.registerPost("/submit", new SubmitEndpoint());
+        endpointManager.registerPost("/", new FiltarEndpoint(databaseManager));
     }
 
     public DatabaseManager getDatabaseManager() {

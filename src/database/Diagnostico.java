@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class Diagnostico {
 
+    private final int id;
     private final ComunidadAutonoma comunidadAutonoma;
     private final String nombre;
     private final String fechaDeNacimiento;
@@ -57,7 +58,8 @@ public class Diagnostico {
     private final int edadEnIngreso;
     private final String mesDeIngreso;
 
-    public Diagnostico(ComunidadAutonoma comunidadAutonoma, String nombre, String fechaDeNacimiento, Sexo sexo, ComunidadAutonoma ccaa_residencia, String fechaDeIngreso, types.CircunstanciaDeContacto circunstanciaDeContacto, String fechaDeFinContacto, TipoAlta tipoAlta, int estanciaDias, String[] diagnosticos, String categoria, String fechaDeIntervencion, String[] procedimientos, String gdr_ap, String cdm_ap, String tipo_gdr_ap, String valorPesoEspanol, int grd_apr, int cdm_apr, String tipo_gdr_apr, String valorPesoAmericano_apr, int nivelSeveridad_apr, int riesgoMortalidad_apr, Servicio servicio, int edad, String reingreso, int coste_apr, String gdr_ir, String tipo_gdr_ir, String tipoProceso_ir, int cie, int numeroDeRegistroAnual, String centroRecodificado, String cip_snsRecodificado, Pais paisNacimiento, Pais paisResidencia, String fechaDeInicioContacto, RegimenFinanciacion regimenFinanciacion, Procedencia procedencia, ContinuidadAsistencial continuidadAsistencial, IngresoEnUCI ingresoEnUCI, int diasUCI, POADiagnostico[] poaDiagnosticos, String[] procedimientoExternos, String tipo_grd_apr, float pesoEspanol_apr, int edadEnIngreso, String mesDeIngreso) {
+    public Diagnostico(int id, ComunidadAutonoma comunidadAutonoma, String nombre, String fechaDeNacimiento, Sexo sexo, ComunidadAutonoma ccaa_residencia, String fechaDeIngreso, types.CircunstanciaDeContacto circunstanciaDeContacto, String fechaDeFinContacto, TipoAlta tipoAlta, int estanciaDias, String[] diagnosticos, String categoria, String fechaDeIntervencion, String[] procedimientos, String gdr_ap, String cdm_ap, String tipo_gdr_ap, String valorPesoEspanol, int grd_apr, int cdm_apr, String tipo_gdr_apr, String valorPesoAmericano_apr, int nivelSeveridad_apr, int riesgoMortalidad_apr, Servicio servicio, int edad, String reingreso, int coste_apr, String gdr_ir, String tipo_gdr_ir, String tipoProceso_ir, int cie, int numeroDeRegistroAnual, String centroRecodificado, String cip_snsRecodificado, Pais paisNacimiento, Pais paisResidencia, String fechaDeInicioContacto, RegimenFinanciacion regimenFinanciacion, Procedencia procedencia, ContinuidadAsistencial continuidadAsistencial, IngresoEnUCI ingresoEnUCI, int diasUCI, POADiagnostico[] poaDiagnosticos, String[] procedimientoExternos, String tipo_grd_apr, float pesoEspanol_apr, int edadEnIngreso, String mesDeIngreso) {
+        this.id = id;
         this.comunidadAutonoma = comunidadAutonoma;
         this.nombre = nombre;
         this.fechaDeNacimiento = fechaDeNacimiento;
@@ -112,6 +114,7 @@ public class Diagnostico {
     @Override
     public String toString() {
         return "Diagnostico{" +
+                "id=" + id +
                 "comunidadAutonoma=" + comunidadAutonoma +
                 ", nombre='" + nombre + '\'' +
                 ", fechaDeNacimiento='" + fechaDeNacimiento + '\'' +
@@ -162,6 +165,10 @@ public class Diagnostico {
                 ", edadEnIngreso=" + edadEnIngreso +
                 ", mesDeIngreso='" + mesDeIngreso + '\'' +
                 '}';
+    }
+
+    public int getId() {
+        return id;
     }
 
     public ComunidadAutonoma getComunidadAutonoma() {

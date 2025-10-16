@@ -3,24 +3,128 @@
 
 <head>
     <title>Hello!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
+        body {
+            margin: 0;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .shadow {
+            filter: drop-shadow(0 10px 4px rgba(0, 0, 0, 0.25));
+        }
+
+        .shadow_light {
+            filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+        }
+
         h1 {
             color: purple;
         }
+
+        table {
+            background-color: white;
+        }
+
+        table,
+        td {
+            border-width: 1px;
+            border-color: black;
+            border-style: solid;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 4px;
+        }
+
+        tr {
+            cursor: pointer;
+        }
+
+        tr:hover {
+            background-color: rgba(53, 79, 226, 0.8);
+            color: white;
+        }
+
+        thead {
+            font-weight: bold;
+            background-color: rgba(53, 79, 226, 1);
+            color: white;
+        }
+
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            width: 100%;
+            height: 72px;
+            background-color: rgb(53, 79, 226);
+            color: white;
+        }
+
+        #headerTitle {
+            font-size: 28px;
+            margin-left: 16px;
+        }
+
+        #headerButtons {
+            padding-right: 16px;
+        }
+
+        #content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            padding-top: 32px;
+            margin-bottom: 32px;
+        }
     </style>
-
-    <script>
-
-    </script>
 </head>
 
 <body>
-    <h1>
-        This is a test!
-    </h1>
+    <div id="header" class="shadow">
+        <div id="headerTitle">4ThePlot</div>
+        <div id="headerButtons">
+            <a>Buscar</a>
+            <a>Estadística</a>
+        </div>
+    </div>
 
-    <java id="datos"></java>
+    <div id="content">
+
+        <form class="shadow_light" method="post" action="/">
+            <label>Filtrar por:</label>
+            <select name="select">
+                <option value="id">ID</option>
+                <option value="nombre">Nombre</option>
+            </select>
+            <input name="text" placeholder="Valor">
+            <button type="submit">Filtrar</button>
+        </form>
+        <br>
+
+        <table class="shadow">
+            <thead>
+                <td style="text-align: center;">ID</td>
+                <td style="text-align: center;">Nombre</td>
+                <td style="text-align: center;">Fecha de nacimiento</td>
+                <td style="text-align: center;">Sexo</td>
+                <td style="text-align: center;">Fecha de Ingreso</td>
+                <td style="text-align: center;">Diagnóstico Principal</td>
+                <td style="text-align: center;">Servicio</td>
+            </thead>
+            <tbody>
+                <java id="tableData"></java>
+            </tbody>
+        </table>
+    </div>
+
 </body>
 
 </html>
