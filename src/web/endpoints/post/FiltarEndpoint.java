@@ -26,20 +26,40 @@ public class FiltarEndpoint implements HttpHandler {
         String html = WebUtils.loadResourceAsString("/web/pages/index.html");
         String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
 
+        System.out.println(1);
+
         HashMap<String, String> postData = getPostData(body);
         String select = postData.get("select");
         String text = postData.get("text");
 
+        System.out.println(2);
+
         List<Diagnostico> diagnosticoList = new ArrayList<>();
         switch (select) {
             case "id" -> {
-                int id = Integer.parseInt(text);
-                diagnosticoList.add(databaseManager.getDiagnosticoById(id));
+                System.out.println(3);
+                try {
+                    int id = Integer.parseInt(text);
+                    diagnosticoList.add(databaseManager.getDiagnosticoById(id));
+
+                    System.out.println(4);
+                } catch (NumberFormatException e) {
+                    System.out.println(5);
+                    String errorHtml = "";
+
+                    errorHtml += "<div id=\"errorMessage\" style=\"color:red;\">\n";
+                    errorHtml += "Error: El valor introducido no es un número entero positivo";
+                    errorHtml += "</div>\n";
+
+                    html = html.replace("<java id=\"error\"></java>", errorHtml);
+                }
             }
             case "nombre" -> {
+                System.out.println(6);
                 diagnosticoList = databaseManager.getDiagnosticoLike(text);
             }
         }
+        System.out.println(7);
 
         String entriesHtml = "";
         for(Diagnostico diagnostico : diagnosticoList) {
@@ -56,6 +76,8 @@ public class FiltarEndpoint implements HttpHandler {
             entriesHtml += "</tr>\n";
         }
 
+        System.out.println(8);
+
         html = html.replace("<java id=\"tableData\"></java>", entriesHtml);
 
         exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
@@ -66,12 +88,14 @@ public class FiltarEndpoint implements HttpHandler {
     }
 
     private HashMap<String, String> getPostData(String body) {
+        System.out.println(10);
         HashMap<String, String> postData = new HashMap<>();
 
         String[] entries = body.split("&");
         for (String entry : entries) {
-            postData.put(entry.split("=")[0], entry.split("=")[1]);
+            postData.put(entry.split("=")[0], (entry.split("=").length == 2) ? entry.split("=")[1] : "");
         }
+        System.out.println(11);
 
         return postData;
     }

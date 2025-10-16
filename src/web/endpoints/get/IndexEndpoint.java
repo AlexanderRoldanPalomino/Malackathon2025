@@ -40,6 +40,8 @@ public class IndexEndpoint implements HttpHandler {
 
         html = html.replace("<java id=\"tableData\"></java>", entriesHtml);
 
+        html = html.replace("<java id=\"error\"></java>", "");
+
         exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
         exchange.sendResponseHeaders(200, html.getBytes().length);
         try (OutputStream os = exchange.getResponseBody()) {
